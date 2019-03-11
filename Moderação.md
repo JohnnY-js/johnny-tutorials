@@ -1,10 +1,10 @@
  # Sistema de Moderação.
  
- Basicamente, o sistema de moderação será envolvido os comandos.. ban, kick e talvez mute.
+ **Basicamente, o sistema de moderação será envolvido os comandos.. ban, kick e talvez mute.
 
 # Vamos começar com o comando ban.
 
- Vamos precisar dos seguintes imports..
+ **Vamos precisar dos seguintes imports..
 
 ```Python
 import discord #Importa o discord
@@ -20,4 +20,4 @@ class ban():
     @commands.command()
     async def ban(self,ctx,member: discord.Member=None):
 ```
-**Isso é preciso**
+**Isso é preciso o self, ctx e o member.
