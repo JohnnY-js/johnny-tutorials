@@ -4,4 +4,8 @@
 
 # Vamos começar com o comando ban.
 
+ Vamos precisar dos seguintes imports..
 
+```Python
+import discord
+import asyncio```
