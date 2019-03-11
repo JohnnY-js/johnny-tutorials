@@ -6,14 +6,14 @@
 
  Vamos precisar dos seguintes imports..
 
-```
+```Python
 import discord #Importa o discord
 import asyncio #Importa o asyncio
-from discord.ext import commands #Importa os comandos na pasta cogs.```
-
+from discord.ext import commands #Importa os comandos na pasta cogs.
+```
 # Vamos criar a class ban.
 
-```
+```Python
 class ban():
     def __init__(self, client):
         self.client = client
