@@ -42,3 +42,4 @@ if member is None:
 else:
             await ctx.send("Você não tem permissão!")
 ```
+
