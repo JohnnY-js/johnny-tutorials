@@ -92,3 +92,52 @@ def setup(client):
   print("[Comando ban] Carregado.")
   client.add_cog(ban(client))
 ```
+# Final:
+
+```Python
+import discord
+import asyncio
+from discord.ext import commands
+
+class ban():
+    def __init__(self, client):
+        self.client = client
+    @commands.command()
+    async def ban(self,ctx,member: discord.Member=None):
+        if ctx.author.guild_permissions.administrator:
+            if member is None:
+                await ctx.send(f"Olá {ctx.author.mention} você não marcou um user para banir")
+        else:
+            await ctx.send("Bobinhuh.. Você não tem permissão!")
+        embed = discord.Embed(colour=0xff5d00)
+        embed.set_author(name=f"Você deseja banir o {member.name}? (60 segundos)")
+        embed.add_field(name="🆔ID:",value=member.id,inline=False)
+        embed.add_field(name="📶Menção:",value=member.mention,inline=False)
+        embed.add_field(name="🔢Tag:",value=member.discriminator,inline=False)
+        embed.add_field(name="📆Criação da Conta:",value=member.created_at.strftime("**%H:%M:%S - %d/%m/20%y**"),inline=False)
+        embed.add_field(name="☑️Entrada no Servidor:",value=member.joined_at.strftime("**%H:%M:%S - %d/%m/20%y**"),inline=False)
+        embed.add_field(name="📱Atividade:",value=member.activity)
+        embed.add_field(name="📷Avatar Link:",value="[Link Direto](" + member.avatar_url + ")\n",inline=False)
+        embed.set_thumbnail(url=member.avatar_url)
+        msg = await ctx.send(embed=embed)
+        await msg.add_reaction("✅")
+        await msg.add_reaction("❌")
+        def check(reaction, user):
+            return user == ctx.author and str(reaction.emoji)
+        try:
+            reaction, user = await self.client.wait_for('reaction_add', timeout=60.0, check=check)
+            if reaction.emoji == "✅":
+                await member.ban()
+                await msg.delete()
+                await ctx.send(f"Olá {ctx.author.mention} o {member.name} foi banido com sucesso")
+            if reaction.emoji == "❌":
+                await msg.delete()
+        except asyncio.TimeoutError:
+            await msg.delete()
+            msg4 = await ctx.send("Você demorou muito para banir, tente novamente!")
+            await asyncio.sleep(5)
+            await msg4.delete()
+def setup(client):
+  print("[Comando ban] Carregado.")
+  client.add_cog(ban(client))
+```
