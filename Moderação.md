@@ -46,9 +46,15 @@ embed.set_author(name=f"Você deseja banir o {member.name}? (60 segundos)")
 # Agora vamos continuar com o resto dos comandos.
 ```Python
 embed.add_field(name="ID:",value=member.id,inline=False) # Vai pegar o id do player que vai ser punido
-embed.add_field(name="Menção:",value=member.mention,inline=False) # Vai mencionar o player punido         embed.add_field(name="Tag:",value=member.discriminator,inline=False) # Vai mostrar a tag do player punido
+
+embed.add_field(name="Menção:",value=member.mention,inline=False) # Vai mencionar o player punido
+
+embed.add_field(name="Tag:",value=member.discriminator,inline=False) # Vai mostrar a tag do player punido
+
 embed.add_field(name="Criação da Conta:",value=member.created_at.strftime("**%H:%M:%S - %d/%m/20%y**"),inline=False) #Dia de criação de conta do player punido    
+
 embed.add_field(name="Avatar Link:",value="[Link Direto](" + member.avatar_url + ")\n",inline=False) #Vai pegar o link do avatar do player punido   
+
 embed.set_thumbnail(url=member.avatar_url)
 ```
 # Agora vamos fazer para que a mensagem seja postada.
